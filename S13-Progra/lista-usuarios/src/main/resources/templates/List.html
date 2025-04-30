@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de usuarios</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+            background-color: #f8d0ef;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #000000;
+            font-size: 4.0em;
+            margin-bottom: 63px;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.911);
+        }
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 0 auto;
+            background-color: #2e065c;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 2px solid #000000;
+        }
+        th {
+            background-color: #a356a3;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        td {
+            color: #ffffff;
+        }
+        tr:nth-child(even) {
+            background-color: #2e065c;
+        }
+        tr:hover {
+            background-color: #2e065c;
+            transition: background-color 0.3s ease;
+        }
+        td:empty:before {
+            content: "--------";
+            color: #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de usuarios</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo electrónico</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.nombre}"></td>
+                <td th:text="${user.apellido}"></td>
+                <td th:if="${user.correo} != null" th:text="${user.correo}"></td>
+                <td th:if="${user.correo} == null">--------</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
